@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clipzy</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+header {
+    background: #000;
+    color: #ff0050;
+    padding: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+main {
+    max-width: 500px;
+    margin: auto;
+    padding: 16px;
+}
+h2 { text-align: center; }
+.upload {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #ff0050;
+    color: white;
+    border-radius: 8px;
+    margin: 16px 0;
+}
+video {
+    display: block;
+    width: 100%;
+    max-height: 65vh;
+    background: black;
+    border-radius: 10px;
+}
+.note {
+    color: #ccc;
+    font-size: 14px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<header>Clipzy</header>
+<main>
+<h2>Watch & Share Videos</h2>
+<label for="videoFile">Apni video select karo:</label>
+<input class="upload" type="file" id="videoFile" accept="video/*">
+<video id="myVideo" controls playsinline></video>
+<p class="note">Filhal video isi device par chalegi.
+Online upload aglay step mein banayenge.</p>
+</main>
+
+<script>
+const videoFile = document.getElementById("videoFile");
+const myVideo = document.getElementById("myVideo");
+
+videoFile.addEventListener("change", function() {
+    if (this.files && this.files[0]) {
+        myVideo.src = URL.createObjectURL(this.files[0]);
+        myVideo.load();
+    }
+});
+</script>
+
+<script type="module">
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+import { getFirestore }
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAE7OB6ieCahPdl6hN7xMjvDGU5OQQ5OGY",
+  authDomain: "clipzy-e0906.firebaseapp.com",
+  projectId: "clipzy-e0906",
+  storageBucket: "clipzy-e0906.firebasestorage.app",
+  messagingSenderId: "867401403178",
+  appId: "1:867401403178:web:3c616b1030df9a8621ec53"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+console.log("Clipzy Firebase se connect ho gaya!");
+</script>
+</body>
+</html>
